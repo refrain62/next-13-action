@@ -1,6 +1,8 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 
+import DoneTodo from './DoneTodo';
+
 const Page = async () => {
     const todos = await prisma.todo.findMany();
 
@@ -22,11 +24,6 @@ const Page = async () => {
         revalidatePath('/posts');
     };
 
-    const doneTodo = async (data: FormData) => {
-        'use server';
-        const id = data.get('id') as string;
-        console.log(id);
-    };
 
     return (
         <div className="m-8">
@@ -36,8 +33,12 @@ const Page = async () => {
                     <li 
                         key={todo.id}
                         className={`flex items-center space-x-2 ${
-                            todo.isComplated ? 'line-through' : ''
+                            todo.isCompleted ? 'line-through' : ''
                         }`}>
+                        <DoneTodo
+                            id={todo.id}
+                            isCompleted={todo.isCompleted}
+                            />
                         <span>{todo.name}</span>
                         <form>
                             <input type="hidden" name="id" value={todo.id} />

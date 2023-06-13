@@ -14,5 +14,5 @@ datasource db {
 model Todo {
   id  Int @id @default(autoincrement())
   name String
-  isComplated Boolean @default(false)
+  isCompleted Boolean @default(false)
 }
