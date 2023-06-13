@@ -9,3 +9,10 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+// model定義
+model Todo {
+  id  Int @id @default(autoincrement())
+  name String
+  isComplated Boolean @default(false)
+}
