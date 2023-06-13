@@ -1,14 +1,14 @@
-## Next.js App RouterのServer ActionsでCRUDの動作確認
+# Next.js App RouterのServer ActionsでCRUDの動作確認
 https://reffect.co.jp/react/next-j-server-actions/ の写経
 
 
-# プロジェクトの作成
+## プロジェクトの作成
 ```
  % npx create-next-app@latest next-13-action
  % cd next-13-action
  ```
 
-# とりあえず実行
+## とりあえず実行
 ```
 % npm run dev
 ```
