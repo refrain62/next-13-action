@@ -1,7 +1,15 @@
 import prisma from '@/lib/prisma';
+import { revalidatePath } from 'next/cache';
 
 const Page = async () => {
     const todos = await prisma.todo.findMany();
+
+    const addTodo = async (data: FormData) => {
+        'use server';
+        const name = data.get('name') as string;
+        await prisma.todo.create({ data: { name } });
+        revalidatePath('/posts');
+    };
 
     return (
         <div className="m-8">
@@ -12,7 +20,7 @@ const Page = async () => {
                 ))}
             </ul>
 
-            <form className="flex items-center mt-4">
+            <form className="flex items-center mt-4" action={addTodo}>
                 <label htmlFor="name">Name:</label>
                 <input type="text" name="name" className="border mx-2 p-1" />
                 <button
