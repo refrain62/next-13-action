@@ -11,12 +11,29 @@ const Page = async () => {
         revalidatePath('/posts');
     };
 
+    const deleteTodo = async (data: FormData) => {
+        'use server';
+        const id = data.get('id') as string;
+        console.log('click:' + id);
+    };
+
     return (
         <div className="m-8">
             <h1 className="text-xl font-bold">Todo一覧</h1>
             <ul className="mt-8">
                 {todos.map((todo) => (
-                    <li key={todo.id}>{todo.name}</li>
+                    <li key={todo.id} className="flex items-center space-x-2">
+                        <span>{todo.name}</span>
+                        <form>
+                            <input type="hidden" name="id" value={todo.id} />
+                            <button
+                                className="bg-red-500 px-2 py-1 rounded-lg text-sm text-white"
+                                formAction={deleteTodo}
+                                >
+                                    削除
+                                </button>
+                        </form>
+                    </li>
                 ))}
             </ul>
 
