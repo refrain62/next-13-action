@@ -14,7 +14,12 @@ const Page = async () => {
     const deleteTodo = async (data: FormData) => {
         'use server';
         const id = data.get('id') as string;
-        console.log('click:' + id);
+        await prisma.todo.delete({
+            where: {
+                id: Number(id),
+            },
+        });
+        revalidatePath('/posts');
     };
 
     return (
