@@ -13,7 +13,14 @@ https://reffect.co.jp/react/next-j-server-actions/ の写経
 % npm run dev
 ```
 
-
+## Prisma のインストール
+```
+% npm install prisma --save-dev
+```
+初期設定
+```
+% npx prisma init --datasource-provider sqlite
+```
 
 
 
