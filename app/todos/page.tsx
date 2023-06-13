@@ -2,28 +2,10 @@ import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 
 import DoneTodo from './DoneTodo';
+import { addTodo, deleteTodo, doneTodo } from './actions';
 
 const Page = async () => {
     const todos = await prisma.todo.findMany();
-
-    const addTodo = async (data: FormData) => {
-        'use server';
-        const name = data.get('name') as string;
-        await prisma.todo.create({ data: { name } });
-        revalidatePath('/posts');
-    };
-
-    const deleteTodo = async (data: FormData) => {
-        'use server';
-        const id = data.get('id') as string;
-        await prisma.todo.delete({
-            where: {
-                id: Number(id),
-            },
-        });
-        revalidatePath('/posts');
-    };
-
 
     return (
         <div className="m-8">
