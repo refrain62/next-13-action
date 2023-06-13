@@ -32,6 +32,10 @@ https://reffect.co.jp/react/next-j-server-actions/ の写経
 % npx prisma studio
 ```
 
+# データの表示
+http://localhost:3000/todos
+にアクセス
+
 
 
 
